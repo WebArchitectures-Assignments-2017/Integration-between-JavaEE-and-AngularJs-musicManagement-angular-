@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="App" >
+<head><title>musicManagement-angular</title>
+<!--  JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+<script src="script/music.js"></script>
+ <!-- CSS -->
+ <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<body >
+<h1 align="center">Music Management Angualr</h1>
+<div align="center" class="message" ng-controller="alertMessagesController">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()" dismiss-on-timeout="100" >{{alert.msg}}</alert>
+    <button type="button" class="btn btn-default" ng-click="closeAlert()" ng-show="buttonAlert">X</button>
+</div>
+<br/>
+<div  ng-controller="GenresCtrl"> 
+<label>Genre:</label><br/><select  class="form-control" ng-options="genre as genre.name for genre in genres" ng-model="selected" ng-change="jsFunction()"></select><br/>
+<label>Song:</label><br/><select  class="form-control" ng-options="song as song.name for song in songs.songs" ng-model="selectedSong" ng-change="jsFunctionSong()"></select><br/>
+</div>
+
+<h3>Genre properites</h3>
+<form ng-controller="insertGenreCtrl"  ng-submit="insertGenre()">
+<label>Genre:</label><input name="genreName" type="text" class="form-control" maxlength="50" ng-model="genreName" required/><br/>
+<label>Description:</label><input name="genreDescription" type="text" class="form-control" maxlength="50" ng-model="genreDescription" required/><br/>
+<button type="submit" class="btn btn-success">Save</button>
+<button type="button" class="btn btn-danger" ng-click="deleteGenre()"  ng-disabled="checkedGen" >Delete</button>
+</form>
+<br/>
+<h3>Song properites</h3>
+<div>
+<form ng-controller="insertSongCtrl" class="form-group" ng-submit="insert()">
+<div class="horizontal" id="left"><label>Name:</label><input name="songName" type="text" class="form-control" maxlength="30" ng-model="songName" required/><br/>
+<label>Description:</label><input name="songDescription" type="text" class="form-control" maxlength="50" ng-model="songDescription" required/><br/>
+<label>Youtube name:</label><input name="songLink" type="text" class="form-control" maxlength="30" ng-model="songLink"/><br/>
+<button type="submit" class="btn btn-success" ng-disabled="checkedSaveSong">Save</button>
+<button type="button" class="btn btn-danger" ng-click="deleteSong()"  ng-disabled="checked" >Delete</button><br/>
+</div><div class="horizontal" id="right">
+<label>Youtube video:</label><br/>
+<object  data="{{songLink}}"></object></div>
+</form>
+</div>
+
+</body>
+
+
+</html>
