@@ -12,3 +12,5 @@ validations-part-2 application and the functionalities are basically the same.
 The application, in broad terms, is structured in order to manage a simple music project
 management software that allow user to perform all the basic CRUD operations on two entities:
 “MusicalGenre” and “Song” related together through a One to Many relationship.
+
+For the whole report please open report.pdf
